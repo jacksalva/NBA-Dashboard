@@ -4,11 +4,44 @@ var url = "http://127.0.0.1:5000/info";
 console.log("test");
 
 
-d3.json(url)
-  .then(function(data) {
+d3.json(url).then(function(data) {
     // Code from your callback goes here...
-    console.log(data)
-  })
+    // console.log(data);
+    var teams = [];
+    
+    console.log(data);
+    for (var i = 0; i < data.length; i++) {
+       
+      var team_name  = data[i].Team
+      // console.log(team_name)
+
+      if (!teams.includes(team_name)){
+          // console.log("test")
+        teams.push(team_name);
+      };
+    }
+    console.log(teams)
+    var input_value = d3.select("#selDataset1")
+          teams.forEach((team) => {
+          //appending the Otu number to options value
+           input_value
+           .append("option")
+           .text(team)
+           .property("value", team);
+          });
+    var input_value = d3.select("#selDataset2")
+        teams.forEach((team) => {
+        //appending the Otu number to options value
+          input_value
+          .append("option")
+          .text(team)
+          .property("value", team);
+    });
+          
+  });
+  
+
+
 // d3.json(url, function(data) {
 //   // Once we get a response, send the data.features object to the createFeatures function
 //   console.log("test")
