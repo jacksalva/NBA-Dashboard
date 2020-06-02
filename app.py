@@ -28,7 +28,7 @@ def info():
     latest_info = dumps(mongo.db.seasonstats.find())
     latest_info = json.loads(latest_info)
     print(type(latest_info))
-    latest_info = latest_info[:331]
+    # latest_info = latest_info[:331]
     return jsonify(latest_info)
 
 
