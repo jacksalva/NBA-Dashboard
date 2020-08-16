@@ -1,6 +1,6 @@
 // function plotcharts(otuname) {
 // //using D3 to get json file
-var url = "http://127.0.0.1:5000/info";
+var url = "http://127.0.0.1:5000/seasondata";
 console.log("test");
 
 let teamApoints;
@@ -93,8 +93,11 @@ function nbastat(team1,team2) {
     team_image1.html("")
     var img1 = team_image1.append("img")
         .attr("src", image1)
-        .attr("class","img-responsive fit-image")
-
+        .attr("width", "298")
+        .attr("height", "298")
+        // .attr("class","img-responsive fit-image")
+    team_image1.append("br")
+    team_image1.append("br")
 
     var row = team_stat1.append("p");
 
@@ -154,7 +157,11 @@ function nbastat(team1,team2) {
   team_image2.html("")
   var img2 = team_image2.append("img")
         .attr("src", image2)
-        .attr("class","img-responsive fit-image")
+        .attr("width", "298")
+        .attr("height", "298")
+        // .attr("class","img-responsive fit-image")
+    team_image2.append("br")
+    team_image2.append("br")
 
   var row = team_stat2.append("p");
         //appending details from object into html

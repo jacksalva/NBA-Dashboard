@@ -9,6 +9,7 @@ app = Flask(__name__)
 
 # Use flask_pymongo to set up mongo connection
 
+#app.config["MONGO_URI"] = "mongodb+srv://everyone:everypass@cluster0.usvaj.mongodb.net/nbastats"
 app.config["MONGO_URI"] = "mongodb://localhost:27017/NBA_STATS"
 mongo = PyMongo(app)
 
@@ -18,12 +19,18 @@ mongo = PyMongo(app)
 
 
 
-
+#landing page 
 @app.route("/")
 def index():
     return render_template("index.html")
 
-@app.route("/info")
+#player endpoint 
+@app.route("/players")
+def player():
+    return render_template("players.html")
+
+#season data endpoint
+@app.route("/seasondata")
 def info():
     latest_info = dumps(mongo.db.seasonstats.find())
     latest_info = json.loads(latest_info)
@@ -31,6 +38,14 @@ def info():
     # latest_info = latest_info[:331]
     return jsonify(latest_info)
 
+#playerdata endpoint
+@app.route("/playerdata")
+def players():
+    latest_info = dumps(mongo.db.playerdata.find())
+    latest_info = json.loads(latest_info)
+    print(type(latest_info))
+    # latest_info = latest_info[:331]
+    return jsonify(latest_info)
 
 # @app.route("/scrape")
 # def scraper():
